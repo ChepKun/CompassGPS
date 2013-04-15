@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Compass + GPS</string>
+    
+    <string name="compass">Compass</string>
+    
+    <string name="GPS">GPS</string>
+    <string name="degrees">Degrees</string>
+    <string name="lat">Lat</string>
+    <string name="lon">Lon</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="GPS_settings">GPS Settings</string>
+    <string name="viewinmap">View in Map</string>
+    <string name="viewusing">View using…</string>
+    <string name="sharelocation">Share location</string>
+    <string name="share_imat">I\'m at</string>
+    <string name="waitingacquire">Still waiting to acquire location…</string>
+    <string name="gpsstatus">GPS Status</string>
+    <string name="gpsstatus_ok">Available</string>
+    <string name="gpsstatus_temp">Temporarily unavailable</string>
+    <string name="gpsstatus_out">Out of service</string>
+    
+    <string name="dialog_title">Enable GPS</string>
+    <string name="dialog_text">In order to retrieve location, we need you to enable \'GPS satellites\' under \'Location sources\' in your device\'s settings. You can do it easily by clicking below on \'Settings\'.</string>
+    <string name="dialog_dontshow">Do not show again</string>
+    
+    <string name="title_activity_about">About…</string>
+    <string name="about_designedby">designed by</string>
+    <string name="about_from">from</string>
+    
+    <string name="separator">Separator</string>
+    <string name="skip">Skip</string>
+    
+    <string name="title_activity_settings">Settings</string>
+
+</resources>

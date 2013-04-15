@@ -1,0 +1,45 @@
+﻿<resources>
+
+    <!-- General settings -->
+    <string name="pref_header_general">General</string>
+    
+    <string name="pref_general_restoredialogs">Restore warnings</string>
+    <string name="pref_general_restoredialogs_text">All warning dialogs will be restored. This means, if you had marked \"Do not show again\" in any warning dialog, it will be shown back again.\nProceed?</string>
+    
+    <!-- Compass settings -->
+    <string name="pref_header_compass">Compass</string>
+    
+    <string name="pref_compass_showmagneticnorth_title">Point to Magnetic North</string>
+    <string name="pref_compass_showmagneticnorth_on">Compass will point to Magnetic North instead of True North</string>
+    <string name="pref_compass_showmagneticnorth_off">Compass will point to True North</string>
+    
+    <!-- GPS settings -->
+    <string name="pref_header_gps">GPS</string>
+    
+    <string name="pref_gps_degformat_title">Degrees format</string>
+    <string-array name="pref_gps_degformat_names">
+        <item>DD.DDDDDD°</item>
+        <item>DD° MM.MMMM\'</item>
+        <item>DD° MM\' SS.SS\"</item>
+    </string-array>
+    <string-array name="pref_gps_degformat_values">
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+    </string-array>
+    
+    <string name="pref_gps_startenabled_title">GPS enabled on start</string>
+    <string name="pref_gps_startenabled_on">GPS is enabled at app startup (\'GPS Satellites\' must be enabled in System Location Settings (see below option))</string>
+    <string name="pref_gps_startenabled_off">GPS is disabled at app startup</string>
+    
+    <string name="pref_gps_update_title">GPS update rates</string>
+    
+    <string name="pref_gps_update_time">GPS update time (seconds)</string>
+    <string name="pref_gps_update_time_text">Enter a numeric value which represents the time between GPS updates (in seconds).\nPlease note that smaller values may result in faster battery draining.\n\n<b>Recommended = 5</b></string>
+    
+    <string name="pref_gps_update_distance">GPS update distance (meters)</string>
+    <string name="pref_gps_update_distance_text">Enter a numeric value which represents the distance between GPS updates (in meters).\nPlease note that smaller values may result in faster battery draining.\n\n<b>Recommended = 10</b></string>
+    
+    <string name="pref_gps_enablegps_title">Enable GPS in System Location Settings</string>
+
+</resources>

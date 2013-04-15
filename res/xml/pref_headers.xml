@@ -1,0 +1,15 @@
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- These settings headers are only used on tablets. -->
+
+    <header
+        android:fragment="com.lunadevel.compassgps.SettingsActivity$GeneralPreferenceFragment"
+        android:title="@string/pref_header_general" />
+    <header
+        android:fragment="com.lunadevel.compassgps.SettingsActivity$CompassPreferenceFragment"
+        android:title="@string/pref_header_compass" />
+    <header
+        android:fragment="com.lunadevel.compassgps.SettingsActivity$GPSPreferenceFragment"
+        android:title="@string/pref_header_gps" />
+
+</preference-headers>

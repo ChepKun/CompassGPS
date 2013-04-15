@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Brújula + GPS</string>
+    
+    <string name="compass">Brújula</string>
+    
+    <string name="GPS">GPS</string>
+    <string name="degrees">Grados</string>
+    <string name="lat">Lat</string>
+    <string name="lon">Lon</string>
+    <string name="latitude">Latitud</string>
+    <string name="longitude">Longitud</string>
+    <string name="GPS_settings">Ajustes GPS</string>
+    <string name="viewinmap">Ver en Mapa</string>
+    <string name="viewusing">Ver usando…</string>
+    <string name="sharelocation">Compartir lugar</string>
+    <string name="share_imat">Estoy en</string>
+    <string name="waitingacquire">Aún en espera de una localización…</string>
+    <string name="gpsstatus">Estado del GPS</string>
+    <string name="gpsstatus_ok">Disponible</string>
+    <string name="gpsstatus_temp">Temporalmente No disponible</string>
+    <string name="gpsstatus_out">Fuera de servicio</string>
+    
+    <string name="dialog_title">Activar GPS</string>
+    <string name="dialog_text">Para poder acceder a la localización, necesitamos que actives \"Satélites GPS\" bajo \"Fuentes de Ubicación\" en los ajustes de tu dispositivo. Puedes hacerlo fácilmente pulsando aquí debajo en \"Ajustes\".</string>
+    <string name="dialog_dontshow">No volver a mostrar</string>
+    
+    <string name="title_activity_about">Acerca de…</string>
+    <string name="about_designedby">diseñado por</string>
+    <string name="about_from">de</string>
+    
+    <string name="separator">Separador</string>
+    <string name="skip">Omitir</string>
+    
+    <string name="settings">Ajustes</string>
+
+</resources>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Strings in this file are NOT to be translated or moved to any folder other than res/values -->
+
+<resources>
+    <string name="pref_key_showenablegpssettings">gps_showEnableGPSSettings</string>
+    <string name="pref_key_showenablegpssettings_default">true</string>
+    
+    <string name="pref_key_compassshowmagneticnorth">compass_showmagneticnorth</string>
+    <string name="pref_key_compassshowmagneticnorth_default">false</string>
+    
+    <string name="pref_key_gpsdegreesformat">gps_degformat</string>
+    <string name="pref_key_gpsdegreesformat_default">1</string>
+    
+    <string name="pref_key_gpsstartenabled">gps_startenabled</string>
+    <string name="pref_key_gpsstartenabled_default">true</string>
+    
+    <string name="pref_key_gpsupdatetime">gps_updatetime</string>
+    <string name="pref_key_gpsupdatetime_default">5</string>
+    <string name="pref_key_gpsupdatetime_max">100</string>
+    <string name="pref_key_gpsupdatetime_min">1</string>
+    
+    <string name="pref_key_gpsupdatedistance">gps_updatedistance</string>
+    <string name="pref_key_gpsupdatedistance_default">5</string>
+    <string name="pref_key_gpsupdatedistance_max">100</string>
+    <string name="pref_key_gpsupdatedistance_min">1</string>
+    
+</resources>

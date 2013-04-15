@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lytNumberPickerDialog"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/lblNumberPickerDialogMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:id="@+id/lytNumberPickerContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/txtNumberPickerDialogNum"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:inputType="number"
+            android:gravity="center"
+            android:cursorVisible="false" />
+
+            <!-- <requestFocus /> 
+        </EditText>-->
+
+        <Button
+            android:id="@+id/btnNumberPickerDialogPlus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/txtNumberPickerDialogNum"
+            android:text="+"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnNumberPickerDialogMinus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/txtNumberPickerDialogNum"
+            android:text="−"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</LinearLayout>
