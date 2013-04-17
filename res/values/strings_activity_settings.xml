@@ -4,6 +4,7 @@
     <string name="pref_header_general">General</string>
     
     <string name="pref_general_restoredialogs">Restore warnings</string>
+    <string name="pref_general_restoredialogs_summary">Restore all warning dialogs</string>
     <string name="pref_general_restoredialogs_text">All warning dialogs will be restored. This means, if you had marked \"Do not show again\" in any warning dialog, it will be shown back again.\nProceed?</string>
     
     <!-- Compass settings -->
@@ -29,17 +30,18 @@
     </string-array>
     
     <string name="pref_gps_startenabled_title">GPS enabled on start</string>
-    <string name="pref_gps_startenabled_on">GPS is enabled at app startup (\'GPS Satellites\' must be enabled in System Location Settings (see below option))</string>
+    <string name="pref_gps_startenabled_on">GPS is enabled at app startup (must also be enabled in System Settings -- see below option)</string>
     <string name="pref_gps_startenabled_off">GPS is disabled at app startup</string>
     
     <string name="pref_gps_update_title">GPS update rates</string>
     
     <string name="pref_gps_update_time">GPS update time (seconds)</string>
-    <string name="pref_gps_update_time_text">Enter a numeric value which represents the time between GPS updates (in seconds).\nPlease note that smaller values may result in faster battery draining.\n\n<b>Recommended = 5</b></string>
+    <string name="pref_gps_update_time_text">Enter the time between GPS updates (in seconds).\nPlease note that smaller values may result in faster battery draining.\n\n<b>Recommended = 5</b></string>
     
     <string name="pref_gps_update_distance">GPS update distance (meters)</string>
-    <string name="pref_gps_update_distance_text">Enter a numeric value which represents the distance between GPS updates (in meters).\nPlease note that smaller values may result in faster battery draining.\n\n<b>Recommended = 10</b></string>
+    <string name="pref_gps_update_distance_text">Enter the distance between GPS updates (in meters).\nPlease note that smaller values may result in faster battery draining.\n\n<b>Recommended = 10</b></string>
     
-    <string name="pref_gps_enablegps_title">Enable GPS in System Location Settings</string>
+    <string name="pref_gps_enablegps_title">Enable GPS in System Settings</string>
+    <string name="pref_gps_enablegps_title_summary">Launch System\'s Location Settings so that you can enable \'GPS Satellites\' under \'Location Sources\'</string>
 
 </resources>

@@ -1,17 +1,29 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/mniGPSViewInMap"
         android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:title="@string/viewinmap"
+        android:icon="@drawable/map" />
+    <item
+        android:id="@+id/mniGPSShare"
+        android:orderInCategory="200"
+        android:showAsAction="ifRoom"
+        android:title="@string/sharelocation"
+        android:icon="@drawable/share" />
+    <item
+        android:id="@+id/mniSettings"
+        android:orderInCategory="700"
         android:showAsAction="never"
         android:title="@string/title_activity_settings"
-        android:icon="@drawable/settings" />
+        android:icon="@android:drawable/ic_menu_preferences" />
     
     <item
-        android:id="@+id/action_about"
-        android:orderInCategory="200"
+        android:id="@+id/mniAbout"
+        android:orderInCategory="900"
         android:showAsAction="never"
         android:title="@string/title_activity_about"
-        android:icon="@drawable/about" />
+        android:icon="@android:drawable/ic_menu_info_details" />
 
 </menu>

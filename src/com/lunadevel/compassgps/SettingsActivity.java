@@ -2,6 +2,7 @@ package com.lunadevel.compassgps;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
+import android.view.ViewDebug.FlagToString;
+import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 
 import java.util.List;
@@ -77,6 +80,24 @@ public class SettingsActivity extends PreferenceActivity {
 		super.onPostCreate(savedInstanceState);
 
 		setupSimplePreferencesScreen();
+		
+		setupSpecialPreferences();
+	}
+
+	/***
+	 * Some preferences might require listeners. They can be setup here.
+	 */
+	private void setupSpecialPreferences() {
+		Preference launchSystemLocationSettings = (Preference) findPreference(getString(R.string.pref_key_gpslaunchsystemsettings));
+		launchSystemLocationSettings.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				Intent sysLocSettings = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+				sysLocSettings.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	            getApplicationContext().startActivity(sysLocSettings);
+				return false;
+			}
+		});
 	}
 
 	/**

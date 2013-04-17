@@ -55,8 +55,9 @@
     
     <Preference
         android:title="@string/pref_gps_enablegps_title"
-        android:key="gps_enablesystemgps" >
-        <intent android:action="android.settings.ACTION_LOCATION_SOURCE_SETTINGS" />
+        android:key="@string/pref_key_gpslaunchsystemsettings"
+        android:summary="@string/pref_gps_enablegps_title_summary" >
+        <!--  <intent android:action="android.settings.ACTION_LOCATION_SOURCE_SETTINGS" /> -->
 	</Preference>
     
 </PreferenceScreen>

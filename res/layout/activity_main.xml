@@ -190,6 +190,7 @@
             </TableRow>
         </TableLayout>
 
+        <!-- 
         <RelativeLayout
             android:id="@+id/lytGPSSocial"
             android:layout_width="match_parent"
@@ -216,6 +217,7 @@
                 android:onClick="shareLocation" />
 
         </RelativeLayout>
+        -->
     </LinearLayout>
 
 </LinearLayout>

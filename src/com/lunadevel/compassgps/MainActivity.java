@@ -2,7 +2,6 @@ package com.lunadevel.compassgps;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.annotation.TargetApi;
@@ -13,7 +12,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewConfiguration;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,8 +59,6 @@ public class MainActivity extends FragmentActivity
 	private TextView lblLonTitle;
 	private TextView lblLonWE;
 	private TextView lblLonContent;
-	private Button btnViewOnMap;
-	private Button btnShareLocation;
 	
 	private double lat = 0.0;
 	private double lon = 0.0;
@@ -102,8 +99,6 @@ public class MainActivity extends FragmentActivity
 	    lblLonTitle = (TextView) findViewById(R.id.lblGPSLonLabel);
 	    lblLonWE = (TextView) findViewById(R.id.lblGPSLonWE);
 	    lblLonContent = (TextView) findViewById(R.id.lblGPSLonContent);
-	    btnViewOnMap = (Button) findViewById(R.id.btnGPSViewInMap);
-	    btnShareLocation = (Button) findViewById(R.id.btnGPSShare);
 		
 		lblCompDegs.setText("0°");
 		lblCompGeo.setText("N");
@@ -111,30 +106,45 @@ public class MainActivity extends FragmentActivity
 		lblLonContent.setText("…");
 		
 		readPreferences();
+		
+		//forceOverflowMenuOfActionBar();
+	}
+	
+	/**
+	 * Forces the Overflow Menu on the ActionBar
+	 */
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	private void forceOverflowMenuOfActionBar() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			try {
+		        ViewConfiguration config = ViewConfiguration.get(this);
+		        java.lang.reflect.Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+		        if(menuKeyField != null) {
+		            menuKeyField.setAccessible(true);
+		            menuKeyField.setBoolean(config, false);
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+		}
 	}
 	
 	private void readPreferences() {
-		try {
-			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-			
-			readPrefCompassShowTrueNorth(prefs.getBoolean(getString(R.string.pref_key_compassshowmagneticnorth), Boolean.parseBoolean(getString(R.string.pref_key_compassshowmagneticnorth_default))));
-			
-			readPrefGPSDegreesFormat(prefs.getString(getString(R.string.pref_key_gpsdegreesformat), getString(R.string.pref_key_gpsdegreesformat_default)));
-			
-			readPrefGPSUpdateDistance(prefs.getString(getString(R.string.pref_key_gpsupdatedistance), getString(R.string.pref_key_gpsupdatedistance_default)));
-			//readPrefGPSUpdateDistance(prefs.getInt(getString(R.string.pref_key_gpsupdatedistance), Integer.parseInt(getString(R.string.pref_key_gpsupdatedistance_default))));
-			
-			readPrefGPSUpdateTime(prefs.getString(getString(R.string.pref_key_gpsupdatetime), getString(R.string.pref_key_gpsupdatetime_default)));
-			//readPrefGPSUpdateTime(prefs.getInt(getString(R.string.pref_key_gpsupdatetime), Integer.parseInt(getString(R.string.pref_key_gpsupdatetime_default))));
-			
-			readPrefShowEnableGPSSettingsDialog(prefs.getBoolean(getString(R.string.pref_key_showenablegpssettings), Boolean.parseBoolean(getString(R.string.pref_key_showenablegpssettings_default))));
-			
-			readPrefEnableGPSOnStart(prefs.getBoolean(getString(R.string.pref_key_gpsstartenabled), Boolean.parseBoolean(getString(R.string.pref_key_gpsstartenabled_default))));
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 		
-		} catch (NumberFormatException NFe) {
-			Toast.makeText(getApplicationContext(), "Error LDCG01 on loading app preferences: Cannot parse a String to Integer. Default values will be used.", Toast.LENGTH_SHORT).show();
-		}
-		// TODO: Catch all possible exceptions and initialize value of variables to defaults
+		readPrefCompassShowTrueNorth(prefs.getBoolean(getString(R.string.pref_key_compassshowmagneticnorth), Boolean.parseBoolean(getString(R.string.pref_key_compassshowmagneticnorth_default))));
+		
+		readPrefGPSDegreesFormat(prefs.getString(getString(R.string.pref_key_gpsdegreesformat), getString(R.string.pref_key_gpsdegreesformat_default)));
+		
+		readPrefGPSUpdateDistance(prefs.getString(getString(R.string.pref_key_gpsupdatedistance), getString(R.string.pref_key_gpsupdatedistance_default)));
+		//readPrefGPSUpdateDistance(prefs.getInt(getString(R.string.pref_key_gpsupdatedistance), Integer.parseInt(getString(R.string.pref_key_gpsupdatedistance_default))));
+		
+		readPrefGPSUpdateTime(prefs.getString(getString(R.string.pref_key_gpsupdatetime), getString(R.string.pref_key_gpsupdatetime_default)));
+		//readPrefGPSUpdateTime(prefs.getInt(getString(R.string.pref_key_gpsupdatetime), Integer.parseInt(getString(R.string.pref_key_gpsupdatetime_default))));
+		
+		readPrefShowEnableGPSSettingsDialog(prefs.getBoolean(getString(R.string.pref_key_showenablegpssettings), Boolean.parseBoolean(getString(R.string.pref_key_showenablegpssettings_default))));
+		
+		readPrefEnableGPSOnStart(prefs.getBoolean(getString(R.string.pref_key_gpsstartenabled), Boolean.parseBoolean(getString(R.string.pref_key_gpsstartenabled_default))));
 	}
 	
 	@Override
@@ -207,23 +217,37 @@ public class MainActivity extends FragmentActivity
 		return true;
 	}
 	
+	private void toast(String message) {
+		Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+	}
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
 		Intent intent;
 	    switch(item.getItemId()){
-		    case R.id.action_about:
+	    	case R.id.mniGPSViewInMap:
+	    		viewGPSOnMapActivity();
+	    		return true;
+	    		
+	    	case R.id.mniGPSShare:
+	    		shareLocationActivity();
+	    		return true;
+	    
+	    	case R.id.mniAbout:
 		    	System.out.println("Lanzando Actividad About");
 		        intent = new Intent(this, AboutActivity.class);
 		        startActivity(intent);
 		        return true;
 		    
-		    case R.id.action_settings:
+		    case R.id.mniSettings:
 		    	System.out.println("Lanzando Actividad Settings");
 		    	intent = new Intent(this, SettingsActivity.class);
 		        startActivity(intent);
 		        return true;
+		        
+	        default:
+	        	return super.onOptionsItemSelected(item);
 	    }
-	    return false;
 	}
 	
 	/***
@@ -263,7 +287,7 @@ public class MainActivity extends FragmentActivity
 			}
 			else {
 				pgbGPSSignal.setVisibility(View.VISIBLE);
-				Toast.makeText(getApplicationContext(), getString(R.string.dialog_text), Toast.LENGTH_LONG).show();
+				toast(getString(R.string.dialog_text));
 				launchGPSSettingsActivity();
 				
 			}
@@ -296,8 +320,6 @@ public class MainActivity extends FragmentActivity
 			lblLonWE.setText("");
 			lblLonContent.setText("…");
 		}
-		btnViewOnMap.setEnabled(isEnabled);
-		btnShareLocation.setEnabled(isEnabled);
 	}
 	
 	// The following method is required by the SensorEventListener interface;
@@ -395,7 +417,7 @@ public class MainActivity extends FragmentActivity
 				pgbGPSSignal.setVisibility(View.VISIBLE);
 			}
 			
-			//Toast.makeText(getApplicationContext(), txtGPSStatus, Toast.LENGTH_SHORT).show();
+			//toast(txtGPSStatus);
 			System.out.println(txtGPSStatus);
 		}
 	}
@@ -410,7 +432,7 @@ public class MainActivity extends FragmentActivity
 			System.out.println("Localización actualizada");
 			declination = getDeclination(location);
 		} else {
-			Toast.makeText(getApplicationContext(), "onLocationChanged, provider=NETWORK_PROVIDER", Toast.LENGTH_SHORT).show();
+			toast("onLocationChanged, provider=NETWORK_PROVIDER");
 			declination = getDeclination(location);
 		}
 	}
@@ -560,11 +582,6 @@ public class MainActivity extends FragmentActivity
 		}
 	}
 
-	
-	public void launchGPSSettings(View view) {
-		launchGPSSettingsActivity();
-	}
-	
 	// Launch System Location settings
 	private void launchGPSSettingsActivity() {
 		System.out.println("Lanzando actividad de Location Settings");
@@ -594,41 +611,32 @@ public class MainActivity extends FragmentActivity
 		
 	}
 	
-	public void viewGPSOnMap(View view) {
-		if(lat != 0.0 && lon != 0.0) 
-			viewGPSOnMapActivity();
-		else
-			Toast.makeText(getApplicationContext(), getString(R.string.waitingacquire), Toast.LENGTH_SHORT).show();
-		
-	}
-	
 	private void viewGPSOnMapActivity() {
-		String uri = String.format(java.util.Locale.ENGLISH, "geo:%f,%f", lat, lon);
-		Intent viewIntent = new Intent(Intent.ACTION_VIEW, android.net.Uri.parse(uri));
-		try {
-			startActivity(Intent.createChooser(viewIntent, getString(R.string.viewusing)));
-		} catch (android.content.ActivityNotFoundException ANFe) {
-			Toast.makeText(getApplicationContext(), ANFe.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-		}
-	}
-		
-	public void shareLocation(View view) {
-		if(lat != 0.0 && lon != 0.0)
-			shareLocationActivity();
-		else
-			Toast.makeText(getApplicationContext(), getString(R.string.waitingacquire), Toast.LENGTH_SHORT).show();
+		if(lat != 0.0 && lon != 0.0) {
+			String uri = String.format(java.util.Locale.ENGLISH, "geo:%f,%f", lat, lon);
+			Intent viewIntent = new Intent(Intent.ACTION_VIEW, android.net.Uri.parse(uri));
+			try {
+				startActivity(Intent.createChooser(viewIntent, getString(R.string.viewusing)));
+			} catch (android.content.ActivityNotFoundException ANFe) {
+				Toast.makeText(getApplicationContext(), ANFe.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+			}
+		} else
+			toast(getString(R.string.waitingacquire));
 	}
 	
 	private void shareLocationActivity() {
-		Intent shareIntent = new Intent(Intent.ACTION_SEND);
-		shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_imat) + " " + getShareableLocation());
-		shareIntent.setType("text/plain");
-		
-		try {
-			startActivity(Intent.createChooser(shareIntent, getString(R.string.viewusing)));
-		} catch (android.content.ActivityNotFoundException ANFe) {
-			Toast.makeText(getApplicationContext(), ANFe.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-		}
+		if(lat != 0.0 && lon != 0.0) {
+			Intent shareIntent = new Intent(Intent.ACTION_SEND);
+			shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_imat) + " " + getShareableLocation());
+			shareIntent.setType("text/plain");
+			
+			try {
+				startActivity(Intent.createChooser(shareIntent, getString(R.string.viewusing)));
+			} catch (android.content.ActivityNotFoundException ANFe) {
+				toast(ANFe.getLocalizedMessage());
+			}
+		} else
+			toast(getString(R.string.waitingacquire));
 	}
 	
 	// Returns the current location in a human-readable format
@@ -677,15 +685,15 @@ public class MainActivity extends FragmentActivity
 	}
 	
 	private void readPrefGPSDegreesFormat (String degFormatStr) {
-		int degFormat = Integer.valueOf(degFormatStr);
+		int degFormat = Integer.parseInt(degFormatStr);
 		switch (degFormat) {
-		case GPS_DEGONLY:
-		case GPS_DEGMIN:
-		case GPS_DEGMINSEC:
-			GPS_format = degFormat;
-			break;
-		default:
-			GPS_format = Integer.valueOf(getString(R.string.pref_key_gpsdegreesformat_default));
+			case GPS_DEGONLY:
+			case GPS_DEGMIN:
+			case GPS_DEGMINSEC:
+				GPS_format = degFormat;
+				break;
+			default:
+				GPS_format = Integer.valueOf(getString(R.string.pref_key_gpsdegreesformat_default));
 		}
 	}
 	

@@ -16,7 +16,7 @@
     <string name="viewusing">View using…</string>
     <string name="sharelocation">Share location</string>
     <string name="share_imat">I\'m at</string>
-    <string name="waitingacquire">Still waiting to acquire location…</string>
+    <string name="waitingacquire">Location not detected. Enable GPS and wait for a valid location…</string>
     <string name="gpsstatus">GPS Status</string>
     <string name="gpsstatus_ok">Available</string>
     <string name="gpsstatus_temp">Temporarily unavailable</string>

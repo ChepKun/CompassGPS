@@ -25,4 +25,6 @@
     <string name="pref_key_gpsupdatedistance_max">100</string>
     <string name="pref_key_gpsupdatedistance_min">1</string>
     
+    <string name="pref_key_gpslaunchsystemsettings">gps_enablesystemgps</string>
+    
 </resources>
