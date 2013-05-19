@@ -314,4 +314,14 @@ public class SettingsActivity extends PreferenceActivity {
 			bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_key_gpsupdatedistance)));
 		}
 	}
+	
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		animateActivityOut();
+	}
+	
+	private void animateActivityOut() {
+		overridePendingTransition(R.anim.fadeinltr, R.anim.fadeoutltr);
+	}
 }

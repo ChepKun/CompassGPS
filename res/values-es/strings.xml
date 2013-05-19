@@ -14,7 +14,7 @@
     <string name="GPS_settings">Ajustes GPS</string>
     <string name="viewinmap">Ver en Mapa</string>
     <string name="viewusing">Ver usando…</string>
-    <string name="sharelocation">Compartir lugar</string>
+    <string name="sharelocation">Compartir lugar vía…</string>
     <string name="share_imat">Estoy en</string>
     <string name="waitingacquire">Localización no detecteda. Activa el GPS y espera por una localización válida…</string>
     <string name="gpsstatus">Estado del GPS</string>
@@ -23,7 +23,7 @@
     <string name="gpsstatus_out">Fuera de servicio</string>
     
     <string name="dialog_title">Activar GPS</string>
-    <string name="dialog_text">Para poder acceder a la localización, necesitamos que actives \"Satélites GPS\" bajo \"Fuentes de Ubicación\" en los ajustes de tu dispositivo. Puedes hacerlo fácilmente pulsando aquí debajo en \"Ajustes\".</string>
+    <string name="dialog_text">Para poder acceder a la localización, necesitamos que actives \"Satélites GPS\" bajo \"Fuentes de Ubicación\" en los ajustes de tu dispositivo.</string>
     <string name="dialog_dontshow">No volver a mostrar</string>
     
     <string name="title_activity_about">Acerca de…</string>
@@ -31,8 +31,10 @@
     <string name="about_from">de</string>
     
     <string name="separator">Separador</string>
+    <string name="optYES">SÍ</string>
+    <string name="optNO">NO</string>
     <string name="skip">Omitir</string>
     
-    <string name="settings">Ajustes</string>
+    <string name="title_activity_settings">Ajustes</string>
 
 </resources>

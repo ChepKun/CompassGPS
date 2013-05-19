@@ -27,4 +27,6 @@
     
     <string name="pref_key_gpslaunchsystemsettings">gps_enablesystemgps</string>
     
+    <string name="GPSstatusbullet">●</string>
+    
 </resources>

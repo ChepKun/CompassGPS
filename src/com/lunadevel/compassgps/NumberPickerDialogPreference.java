@@ -1,20 +1,26 @@
 package com.lunadevel.compassgps;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 import android.preference.DialogPreference;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class NumberPickerDialogPreference extends DialogPreference {
 	
 	private static final String NAMESPACE="http://schemas.android.com/apk/res/android";
+	
+	private final boolean isHoneycombOrHigher = Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
 
+	private RelativeLayout lytContent;
+	private final String nbpNumTag = "nbpNum";
 	private TextView lblMessage;
     private EditText txtNum;
     private Button btnNumPlus;
@@ -22,9 +28,9 @@ public class NumberPickerDialogPreference extends DialogPreference {
 
     private String mDialogMessage;
     
-    private int mDefault;
+    private int mDefault = 5;
     private int mMax, mMin;
-    private int mValue = 1;
+    private int mValue = 5;
 
     public NumberPickerDialogPreference(Context context, AttributeSet attr) { 
         super(context, attr);
@@ -34,22 +40,27 @@ public class NumberPickerDialogPreference extends DialogPreference {
         setNegativeButtonText(android.R.string.cancel);
         
         mDialogMessage = context.getString(attr.getAttributeResourceValue(NAMESPACE, "dialogMessage", -1));
-        mDefault = attr.getAttributeIntValue(NAMESPACE,"defaultValue", 5);
+        mDefault = attr.getAttributeIntValue(NAMESPACE,"defaultValue", mDefault);
         mMax = attr.getAttributeIntValue(NAMESPACE,"max", 100);
-        //mMin = attr.getAttributeIntValue(NAMESPACE,"min", 0);
-        mMin = 0;
+        //mMin = attr.getAttributeIntValue(NAMESPACE,"min", 1);
+        mMin = 1;
         
         setPersistent(true);
     }
-
-    @Override 
-    protected void onBindDialogView(View view) {
-        super.onBindDialogView(view);
+    
+    @Override
+    protected void onSetInitialValue(boolean restore, Object defaultValue) {
+    	super.onSetInitialValue(restore, defaultValue);
         
-        lblMessage = (TextView) view.findViewById(R.id.lblNumberPickerDialogMessage);
-        lblMessage.setText(mDialogMessage);
+        if (restore)
+        	mValue = shouldPersist() ? Integer.parseInt(getPersistedString(String.valueOf(mDefault))) : mDefault;
+        else
+            mValue = (Integer)defaultValue;
         
-        btnNumPlus = (Button) view.findViewById(R.id.btnNumberPickerDialogPlus);
+        setSummary(mValue);
+    }
+    
+    private void setOldInterface(View view) {
         btnNumPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +72,6 @@ public class NumberPickerDialogPreference extends DialogPreference {
             }
         });
         
-        btnNumMinus = (Button) view.findViewById(R.id.btnNumberPickerDialogMinus);
         btnNumMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +83,6 @@ public class NumberPickerDialogPreference extends DialogPreference {
             }
         });
         
-        txtNum = (EditText) view.findViewById(R.id.txtNumberPickerDialogNum);
         txtNum.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -88,35 +97,68 @@ public class NumberPickerDialogPreference extends DialogPreference {
 			}
 		});
         txtNum.setText(String.valueOf(mValue));
+    }
+    
+    @SuppressLint("NewApi")
+	private void setModernInterface(View view) {
+    	// Create a real NumberPicker and set values
+    	android.widget.NumberPicker nbpNum = new android.widget.NumberPicker(view.getContext());
+    	nbpNum.setTag(nbpNumTag);
+    	nbpNum.setMaxValue(mMax);
+    	nbpNum.setMinValue(mMin);
+    	nbpNum.setValue(mValue);
+    	
+    	// Copy the layout params defined in XML for the old interface EditText 
+    	ViewGroup.LayoutParams layoutParams = txtNum.getLayoutParams();
+    	
+    	// Add the newly created NumberPicker to the layout with the layout params
+    	lytContent.addView(nbpNum, layoutParams);
+    	
+    	// Hide the old interface views
+    	btnNumPlus.setVisibility(View.GONE);
+    	btnNumMinus.setVisibility(View.GONE);
+    	txtNum.setVisibility(View.GONE);
+    }
+
+    @Override 
+    protected void onBindDialogView(View view) {
+        super.onBindDialogView(view);
         
-        System.out.println("CPC6");
+        lblMessage = (TextView) view.findViewById(R.id.lblNumberPickerDialogMessage);
+        lblMessage.setText(mDialogMessage);
+        
+        lytContent = (RelativeLayout) view.findViewById(R.id.lytNumberPickerContent);
+        
+        btnNumPlus = (Button) view.findViewById(R.id.btnNumberPickerDialogPlus);
+        btnNumMinus = (Button) view.findViewById(R.id.btnNumberPickerDialogMinus);
+        txtNum = (EditText) view.findViewById(R.id.txtNumberPickerDialogNum);
+        
+        if(isHoneycombOrHigher)
+        	setModernInterface(view);
+        else
+	        setOldInterface(view);
+        
         setSummary(mValue);
     }
     
     public void onButtonPlusPressed(View view) {
     	int currentVal = Integer.parseInt(txtNum.getText().toString());
-    	txtNum.setText(String.valueOf(currentVal + 1));
+    	if(currentVal >= mMax)
+    		txtNum.setText(String.valueOf(mMax));
+    	else if (currentVal < mMin)
+    		txtNum.setText(String.valueOf(mMin));
+    	else
+    		txtNum.setText(String.valueOf(currentVal + 1));
     }
     
     public void onButtonMinusPressed(View view) {
     	int currentVal = Integer.parseInt(txtNum.getText().toString());
-    	txtNum.setText(String.valueOf(currentVal - 1));
-    }
-
-    @Override
-    protected void onSetInitialValue(boolean restore, Object defaultValue) {
-    	super.onSetInitialValue(restore, defaultValue);
-        
-        if (restore) {
-        	System.out.println("CPC5.1");
-            //mValue = shouldPersist() ? getPersistedInt(mDefault) : 5;
-        	mValue = shouldPersist() ? Integer.parseInt(getPersistedString(String.valueOf(mDefault))) : 5;
-        } else { 
-        	System.out.println("CPC5.2");
-            mValue = (Integer)defaultValue;
-        }
-        
-        setSummary(mValue);
+    	if (currentVal > mMax)
+    		txtNum.setText(String.valueOf(mMax));
+    	else if (currentVal <= mMin)
+    		txtNum.setText(String.valueOf(mMin));
+    	else
+    		txtNum.setText(String.valueOf(currentVal - 1));
     }
 
     public void setSummary(int value) {
@@ -137,18 +179,22 @@ public class NumberPickerDialogPreference extends DialogPreference {
         super.onDialogClosed(positiveResult);
 
         if (positiveResult) {
-        	mValue = Integer.parseInt(txtNum.getText().toString());
+        	mValue = isHoneycombOrHigher ? getModernValue() : Integer.parseInt(txtNum.getText().toString());
         	
         	if(mValue > mMax)
         		mValue = mMax;
         	else if (mValue < mMin)
         		mValue = mMin;
         	
-        	System.out.println("Nuevo value es " + mValue);
-        	System.out.println("CPC4");
         	setSummary(mValue);
         	persistString(String.valueOf(mValue));
         }
+    }
+    
+    @SuppressLint("NewApi")
+	private int getModernValue() {
+    	android.widget.NumberPicker nbpNum = (android.widget.NumberPicker) lytContent.findViewWithTag(nbpNumTag);
+    	return nbpNum.getValue();
     }
 
 }

@@ -8,7 +8,8 @@
     <TextView
         android:id="@+id/lblNumberPickerDialogMessage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true" />
 
     <RelativeLayout
         android:id="@+id/lytNumberPickerContent"
@@ -17,7 +18,7 @@
 
         <EditText
             android:id="@+id/txtNumberPickerDialogNum"
-            android:layout_width="80dp"
+            android:layout_width="@dimen/numberpicker_text_width"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"

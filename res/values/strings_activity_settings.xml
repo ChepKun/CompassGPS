@@ -11,8 +11,8 @@
     <string name="pref_header_compass">Compass</string>
     
     <string name="pref_compass_showmagneticnorth_title">Point to Magnetic North</string>
-    <string name="pref_compass_showmagneticnorth_on">Compass will point to Magnetic North instead of True North</string>
-    <string name="pref_compass_showmagneticnorth_off">Compass will point to True North</string>
+    <string name="pref_compass_showmagneticnorth_on">Compass will point to Magnetic North instead of Geographic North</string>
+    <string name="pref_compass_showmagneticnorth_off">Compass will point to Geographic North</string>
     
     <!-- GPS settings -->
     <string name="pref_header_gps">GPS</string>
@@ -39,7 +39,7 @@
     <string name="pref_gps_update_time_text">Enter the time between GPS updates (in seconds).\nPlease note that smaller values may result in faster battery draining.\n\n<b>Recommended = 5</b></string>
     
     <string name="pref_gps_update_distance">GPS update distance (meters)</string>
-    <string name="pref_gps_update_distance_text">Enter the distance between GPS updates (in meters).\nPlease note that smaller values may result in faster battery draining.\n\n<b>Recommended = 10</b></string>
+    <string name="pref_gps_update_distance_text">Enter the distance between GPS updates (in meters).\nPlease note that smaller values may result in faster battery draining.\n\n<b>Recommended = 5</b></string>
     
     <string name="pref_gps_enablegps_title">Enable GPS in System Settings</string>
     <string name="pref_gps_enablegps_title_summary">Launch System\'s Location Settings so that you can enable \'GPS Satellites\' under \'Location Sources\'</string>

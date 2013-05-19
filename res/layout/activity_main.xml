@@ -34,8 +34,7 @@
                 android:id="@+id/imgCompass"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
                 android:contentDescription="@string/compass"
                 android:padding="10dp"
                 android:src="@drawable/compass" />
@@ -52,8 +51,7 @@
                 android:id="@+id/lblCompassDegrees"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textIsSelectable="false" />
 
@@ -75,7 +73,6 @@
                 android:layout_centerHorizontal="true"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textIsSelectable="false" />
-
         </RelativeLayout>
     </LinearLayout>
 
@@ -91,35 +88,61 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/lytGPSTitleOptions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/lblGPSTitle"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
                 android:text="@string/GPS"
                 android:textAllCaps="true"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textStyle="bold" />
-
-            <ProgressBar
-                android:id="@+id/pgbLoading"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone" />
+            
+            <RelativeLayout
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:layout_centerVertical="true"
+	            android:layout_toLeftOf="@+id/tgbGPSToggle" >
+            	
+                <TextView
+	                android:id="@+id/lblGPSStatus"
+	                android:text="@string/GPSstatusbullet"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_centerInParent="true"
+	                android:visibility="invisible"
+	                android:textAppearance="?android:attr/textAppearanceLarge"
+	                android:textStyle="bold"
+	                android:layout_marginLeft="5dp" />
+	
+	            <ProgressBar
+	                android:id="@+id/pgbLoading"
+	                android:layout_centerInParent="true"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:visibility="invisible" />
+            	
+            </RelativeLayout>
 
             <ToggleButton
                 android:id="@+id/tgbGPSToggle"
+                android:textOn="@string/optYES"
+                android:textOff="@string/optNO"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:button="@drawable/satellite"
                 android:onClick="toggleGPS"
                 android:text="@string/GPS" />
-        </LinearLayout>
+
+        </RelativeLayout>
 
         <TableLayout
             android:id="@+id/lytGPSData"
@@ -189,35 +212,5 @@
                     android:textAppearance="?android:attr/textAppearanceLarge" />
             </TableRow>
         </TableLayout>
-
-        <!-- 
-        <RelativeLayout
-            android:id="@+id/lytGPSSocial"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <Button
-                android:id="@+id/btnGPSViewInMap"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:drawableLeft="@drawable/map"
-                android:text="@string/viewinmap"
-                android:onClick="viewGPSOnMap" />
-
-            <Button
-                android:id="@+id/btnGPSShare"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="@string/sharelocation"
-                android:drawableLeft="@drawable/share"
-                android:onClick="shareLocation" />
-
-        </RelativeLayout>
-        -->
     </LinearLayout>
-
 </LinearLayout>

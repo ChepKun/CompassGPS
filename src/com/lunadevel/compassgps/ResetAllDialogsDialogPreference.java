@@ -17,10 +17,10 @@ public class ResetAllDialogsDialogPreference extends DialogPreference {
 		
 		if(positiveResult) {
 			Editor editor = getEditor();
-			Context ctx = getContext();
+			Context context = getContext();
 			
 			//Write here all the values to be resetted
-			editor.putBoolean(ctx.getString(R.string.pref_key_showenablegpssettings), Boolean.parseBoolean(ctx.getString(R.string.pref_key_showenablegpssettings_default)));
+			editor.putBoolean(context.getString(R.string.pref_key_showenablegpssettings), Boolean.parseBoolean(context.getString(R.string.pref_key_showenablegpssettings_default)));
 			
 			//Important
 			editor.commit();

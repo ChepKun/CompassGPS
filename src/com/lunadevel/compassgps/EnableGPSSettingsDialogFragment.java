@@ -42,7 +42,7 @@ public class EnableGPSSettingsDialogFragment extends DialogFragment {
 		builder.setView(view)
 			.setMessage(R.string.dialog_text)
 			.setTitle(R.string.dialog_title)
-			.setPositiveButton(R.string.settings, new DialogInterface.OnClickListener() {
+			.setPositiveButton(R.string.title_activity_settings, new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {
 					// Send the positive button event back to the host activity
 					listener.onDialogPositiveClick(EnableGPSSettingsDialogFragment.this, getShowNextTime());

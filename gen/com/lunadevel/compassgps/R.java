@@ -8,11 +8,22 @@
 package com.lunadevel.compassgps;
 
 public final class R {
+    public static final class anim {
+        public static final int fadeinltr=0x7f040000;
+        public static final int fadeinrtl=0x7f040001;
+        public static final int fadeoutltr=0x7f040002;
+        public static final int fadeoutrtl=0x7f040003;
+    }
     public static final class array {
-        public static final int pref_gps_degformat_names=0x7f070000;
-        public static final int pref_gps_degformat_values=0x7f070001;
+        public static final int pref_gps_degformat_names=0x7f090000;
+        public static final int pref_gps_degformat_values=0x7f090001;
     }
     public static final class attr {
+    }
+    public static final class color {
+        public static final int color_green=0x7f060002;
+        public static final int color_red=0x7f060000;
+        public static final int color_yellow=0x7f060001;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -21,8 +32,9 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f050000;
-        public static final int activity_vertical_margin=0x7f050001;
+        public static final int activity_horizontal_margin=0x7f070000;
+        public static final int activity_vertical_margin=0x7f070001;
+        public static final int numberpicker_text_width=0x7f070002;
     }
     public static final class drawable {
         public static final int about=0x7f020000;
@@ -35,41 +47,45 @@ public final class R {
         public static final int up=0x7f020007;
     }
     public static final class id {
-        public static final int btnNumberPickerDialogMinus=0x7f0a001e;
-        public static final int btnNumberPickerDialogPlus=0x7f0a001d;
-        public static final int chkEnableGPSDialogDontShow=0x7f0a0018;
-        public static final int imgCompass=0x7f0a0005;
-        public static final int imgUp=0x7f0a0006;
-        public static final int lblAboutAttributions=0x7f0a0000;
-        public static final int lblCompassDeclination=0x7f0a0009;
-        public static final int lblCompassDegrees=0x7f0a0008;
-        public static final int lblCompassGeo=0x7f0a0007;
-        public static final int lblCompassTitle=0x7f0a0003;
-        public static final int lblGPSLatContent=0x7f0a0013;
-        public static final int lblGPSLatLabel=0x7f0a0011;
-        public static final int lblGPSLatNS=0x7f0a0012;
-        public static final int lblGPSLonContent=0x7f0a0017;
-        public static final int lblGPSLonLabel=0x7f0a0015;
-        public static final int lblGPSLonWE=0x7f0a0016;
-        public static final int lblGPSTitle=0x7f0a000c;
-        public static final int lblNumberPickerDialogMessage=0x7f0a001a;
-        public static final int lytCompass=0x7f0a0002;
-        public static final int lytCompassContent=0x7f0a0004;
-        public static final int lytGPS=0x7f0a000a;
-        public static final int lytGPSData=0x7f0a000f;
-        public static final int lytGPSTitleOptions=0x7f0a000b;
-        public static final int lytGlobalLayout=0x7f0a0001;
-        public static final int lytNumberPickerContent=0x7f0a001b;
-        public static final int lytNumberPickerDialog=0x7f0a0019;
-        public static final int mniAbout=0x7f0a0022;
-        public static final int mniGPSShare=0x7f0a0020;
-        public static final int mniGPSViewInMap=0x7f0a001f;
-        public static final int mniSettings=0x7f0a0021;
-        public static final int pgbLoading=0x7f0a000d;
-        public static final int tbrGPSLat=0x7f0a0010;
-        public static final int tbrGPSLon=0x7f0a0014;
-        public static final int tgbGPSToggle=0x7f0a000e;
-        public static final int txtNumberPickerDialogNum=0x7f0a001c;
+        public static final int LinearLayout1=0x7f0c0000;
+        public static final int btnNumberPickerDialogMinus=0x7f0c0022;
+        public static final int btnNumberPickerDialogPlus=0x7f0c0021;
+        public static final int chkEnableGPSDialogDontShow=0x7f0c001c;
+        public static final int imgCompass=0x7f0c0008;
+        public static final int imgIcon=0x7f0c0001;
+        public static final int imgUp=0x7f0c0009;
+        public static final int lblAboutAttributions=0x7f0c0003;
+        public static final int lblAppName=0x7f0c0002;
+        public static final int lblCompassDeclination=0x7f0c000c;
+        public static final int lblCompassDegrees=0x7f0c000b;
+        public static final int lblCompassGeo=0x7f0c000a;
+        public static final int lblCompassTitle=0x7f0c0006;
+        public static final int lblGPSLatContent=0x7f0c0017;
+        public static final int lblGPSLatLabel=0x7f0c0015;
+        public static final int lblGPSLatNS=0x7f0c0016;
+        public static final int lblGPSLonContent=0x7f0c001b;
+        public static final int lblGPSLonLabel=0x7f0c0019;
+        public static final int lblGPSLonWE=0x7f0c001a;
+        public static final int lblGPSStatus=0x7f0c0011;
+        public static final int lblGPSTitle=0x7f0c000f;
+        public static final int lblNumberPickerDialogMessage=0x7f0c001e;
+        public static final int lytCompass=0x7f0c0005;
+        public static final int lytCompassContent=0x7f0c0007;
+        public static final int lytGPS=0x7f0c000d;
+        public static final int lytGPSData=0x7f0c0013;
+        public static final int lytGPSTitleOptions=0x7f0c000e;
+        public static final int lytGlobalLayout=0x7f0c0004;
+        public static final int lytNumberPickerContent=0x7f0c001f;
+        public static final int lytNumberPickerDialog=0x7f0c001d;
+        public static final int mniAbout=0x7f0c0026;
+        public static final int mniGPSShare=0x7f0c0024;
+        public static final int mniGPSViewInMap=0x7f0c0023;
+        public static final int mniSettings=0x7f0c0025;
+        public static final int pgbLoading=0x7f0c0012;
+        public static final int tbrGPSLat=0x7f0c0014;
+        public static final int tbrGPSLon=0x7f0c0018;
+        public static final int tgbGPSToggle=0x7f0c0010;
+        public static final int txtNumberPickerDialogNum=0x7f0c0020;
     }
     public static final class layout {
         public static final int activity_about=0x7f030000;
@@ -78,81 +94,86 @@ public final class R {
         public static final int dialog_numberpicker=0x7f030003;
     }
     public static final class menu {
-        public static final int about=0x7f090000;
-        public static final int main=0x7f090001;
+        public static final int about=0x7f0b0000;
+        public static final int main=0x7f0b0001;
     }
     public static final class string {
-        public static final int GPS=0x7f060013;
-        public static final int GPS_settings=0x7f060019;
-        public static final int about_designedby=0x7f060027;
-        public static final int about_from=0x7f060028;
-        public static final int app_name=0x7f060011;
-        public static final int compass=0x7f060012;
-        public static final int degrees=0x7f060014;
-        public static final int dialog_dontshow=0x7f060025;
-        public static final int dialog_text=0x7f060024;
-        public static final int dialog_title=0x7f060023;
-        public static final int gpsstatus=0x7f06001f;
-        public static final int gpsstatus_ok=0x7f060020;
-        public static final int gpsstatus_out=0x7f060022;
-        public static final int gpsstatus_temp=0x7f060021;
-        public static final int lat=0x7f060015;
-        public static final int latitude=0x7f060017;
-        public static final int lon=0x7f060016;
-        public static final int longitude=0x7f060018;
-        public static final int pref_compass_showmagneticnorth_off=0x7f060034;
-        public static final int pref_compass_showmagneticnorth_on=0x7f060033;
-        public static final int pref_compass_showmagneticnorth_title=0x7f060032;
-        public static final int pref_general_restoredialogs=0x7f06002e;
-        public static final int pref_general_restoredialogs_summary=0x7f06002f;
-        public static final int pref_general_restoredialogs_text=0x7f060030;
-        public static final int pref_gps_degformat_title=0x7f060036;
-        public static final int pref_gps_enablegps_title=0x7f06003f;
-        public static final int pref_gps_enablegps_title_summary=0x7f060040;
-        public static final int pref_gps_startenabled_off=0x7f060039;
-        public static final int pref_gps_startenabled_on=0x7f060038;
-        public static final int pref_gps_startenabled_title=0x7f060037;
-        public static final int pref_gps_update_distance=0x7f06003d;
-        public static final int pref_gps_update_distance_text=0x7f06003e;
-        public static final int pref_gps_update_time=0x7f06003b;
-        public static final int pref_gps_update_time_text=0x7f06003c;
-        public static final int pref_gps_update_title=0x7f06003a;
+        public static final int GPS=0x7f080014;
+        public static final int GPS_settings=0x7f08001a;
+        public static final int GPSstatusbullet=0x7f080011;
+        public static final int about_designedby=0x7f080028;
+        public static final int about_from=0x7f080029;
+        public static final int app_name=0x7f080012;
+        public static final int compass=0x7f080013;
+        public static final int degrees=0x7f080015;
+        public static final int dialog_dontshow=0x7f080026;
+        public static final int dialog_text=0x7f080025;
+        public static final int dialog_title=0x7f080024;
+        public static final int gpsstatus=0x7f080020;
+        public static final int gpsstatus_ok=0x7f080021;
+        public static final int gpsstatus_out=0x7f080023;
+        public static final int gpsstatus_temp=0x7f080022;
+        public static final int lat=0x7f080016;
+        public static final int latitude=0x7f080018;
+        public static final int lon=0x7f080017;
+        public static final int longitude=0x7f080019;
+        public static final int optNO=0x7f08002c;
+        public static final int optYES=0x7f08002b;
+        public static final int pref_compass_showmagneticnorth_off=0x7f080036;
+        public static final int pref_compass_showmagneticnorth_on=0x7f080035;
+        public static final int pref_compass_showmagneticnorth_title=0x7f080034;
+        public static final int pref_general_restoredialogs=0x7f080030;
+        public static final int pref_general_restoredialogs_summary=0x7f080031;
+        public static final int pref_general_restoredialogs_text=0x7f080032;
+        public static final int pref_gps_degformat_title=0x7f080038;
+        public static final int pref_gps_enablegps_title=0x7f080041;
+        public static final int pref_gps_enablegps_title_summary=0x7f080042;
+        public static final int pref_gps_startenabled_off=0x7f08003b;
+        public static final int pref_gps_startenabled_on=0x7f08003a;
+        public static final int pref_gps_startenabled_title=0x7f080039;
+        public static final int pref_gps_update_distance=0x7f08003f;
+        public static final int pref_gps_update_distance_text=0x7f080040;
+        public static final int pref_gps_update_time=0x7f08003d;
+        public static final int pref_gps_update_time_text=0x7f08003e;
+        public static final int pref_gps_update_title=0x7f08003c;
         /**  Compass settings 
+ Compass settings 
          */
-        public static final int pref_header_compass=0x7f060031;
+        public static final int pref_header_compass=0x7f080033;
         /**  General settings 
+ General settings 
          */
-        public static final int pref_header_general=0x7f06002d;
+        public static final int pref_header_general=0x7f08002f;
         /**  GPS settings 
+ GPS settings 
          */
-        public static final int pref_header_gps=0x7f060035;
-        public static final int pref_key_compassshowmagneticnorth=0x7f060002;
-        public static final int pref_key_compassshowmagneticnorth_default=0x7f060003;
-        public static final int pref_key_gpsdegreesformat=0x7f060004;
-        public static final int pref_key_gpsdegreesformat_default=0x7f060005;
-        public static final int pref_key_gpslaunchsystemsettings=0x7f060010;
-        public static final int pref_key_gpsstartenabled=0x7f060006;
-        public static final int pref_key_gpsstartenabled_default=0x7f060007;
-        public static final int pref_key_gpsupdatedistance=0x7f06000c;
-        public static final int pref_key_gpsupdatedistance_default=0x7f06000d;
-        public static final int pref_key_gpsupdatedistance_max=0x7f06000e;
-        public static final int pref_key_gpsupdatedistance_min=0x7f06000f;
-        public static final int pref_key_gpsupdatetime=0x7f060008;
-        public static final int pref_key_gpsupdatetime_default=0x7f060009;
-        public static final int pref_key_gpsupdatetime_max=0x7f06000a;
-        public static final int pref_key_gpsupdatetime_min=0x7f06000b;
-        public static final int pref_key_showenablegpssettings=0x7f060000;
-        public static final int pref_key_showenablegpssettings_default=0x7f060001;
-        public static final int separator=0x7f060029;
-        public static final int settings=0x7f06002c;
-        public static final int share_imat=0x7f06001d;
-        public static final int sharelocation=0x7f06001c;
-        public static final int skip=0x7f06002a;
-        public static final int title_activity_about=0x7f060026;
-        public static final int title_activity_settings=0x7f06002b;
-        public static final int viewinmap=0x7f06001a;
-        public static final int viewusing=0x7f06001b;
-        public static final int waitingacquire=0x7f06001e;
+        public static final int pref_header_gps=0x7f080037;
+        public static final int pref_key_compassshowmagneticnorth=0x7f080002;
+        public static final int pref_key_compassshowmagneticnorth_default=0x7f080003;
+        public static final int pref_key_gpsdegreesformat=0x7f080004;
+        public static final int pref_key_gpsdegreesformat_default=0x7f080005;
+        public static final int pref_key_gpslaunchsystemsettings=0x7f080010;
+        public static final int pref_key_gpsstartenabled=0x7f080006;
+        public static final int pref_key_gpsstartenabled_default=0x7f080007;
+        public static final int pref_key_gpsupdatedistance=0x7f08000c;
+        public static final int pref_key_gpsupdatedistance_default=0x7f08000d;
+        public static final int pref_key_gpsupdatedistance_max=0x7f08000e;
+        public static final int pref_key_gpsupdatedistance_min=0x7f08000f;
+        public static final int pref_key_gpsupdatetime=0x7f080008;
+        public static final int pref_key_gpsupdatetime_default=0x7f080009;
+        public static final int pref_key_gpsupdatetime_max=0x7f08000a;
+        public static final int pref_key_gpsupdatetime_min=0x7f08000b;
+        public static final int pref_key_showenablegpssettings=0x7f080000;
+        public static final int pref_key_showenablegpssettings_default=0x7f080001;
+        public static final int separator=0x7f08002a;
+        public static final int share_imat=0x7f08001e;
+        public static final int sharelocation=0x7f08001d;
+        public static final int skip=0x7f08002d;
+        public static final int title_activity_about=0x7f080027;
+        public static final int title_activity_settings=0x7f08002e;
+        public static final int viewinmap=0x7f08001b;
+        public static final int viewusing=0x7f08001c;
+        public static final int waitingacquire=0x7f08001f;
     }
     public static final class style {
         /** 
@@ -177,17 +198,17 @@ public final class R {
  <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar"> 
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f080000;
+        public static final int AppBaseTheme=0x7f0a0000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f080001;
+        public static final int AppTheme=0x7f0a0001;
     }
     public static final class xml {
-        public static final int pref_compass=0x7f040000;
-        public static final int pref_examples=0x7f040001;
-        public static final int pref_general=0x7f040002;
-        public static final int pref_gps=0x7f040003;
-        public static final int pref_headers=0x7f040004;
+        public static final int pref_compass=0x7f050000;
+        public static final int pref_examples=0x7f050001;
+        public static final int pref_general=0x7f050002;
+        public static final int pref_gps=0x7f050003;
+        public static final int pref_headers=0x7f050004;
     }
 }

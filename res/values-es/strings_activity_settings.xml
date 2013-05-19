@@ -1,0 +1,47 @@
+﻿<resources>
+
+    <!-- General settings -->
+    <string name="pref_header_general">General</string>
+    
+    <string name="pref_general_restoredialogs">Restaurar avisos</string>
+    <string name="pref_general_restoredialogs_summary">Restaurar todos los avisos</string>
+    <string name="pref_general_restoredialogs_text">Todos los diálogos de aviso serán restaurados. Esto significa que si habías marcado \"No volver a mostrar\" en algún diálogo de aviso, volverá a mostrarse.\¿Proceder?</string>
+    
+    <!-- Compass settings -->
+    <string name="pref_header_compass">Brújula</string>
+    
+    <string name="pref_compass_showmagneticnorth_title">Apuntar al Norte Magnético</string>
+    <string name="pref_compass_showmagneticnorth_on">La brújula apuntará al Norte Magnético en lugar del Norte Geográfico</string>
+    <string name="pref_compass_showmagneticnorth_off">La brújula apuntará al Norte Geográfico</string>
+    
+    <!-- GPS settings -->
+    <string name="pref_header_gps">GPS</string>
+    
+    <string name="pref_gps_degformat_title">Formato de los grados</string>
+    <string-array name="pref_gps_degformat_names">
+        <item>GG.GGGGGG°</item>
+        <item>GG° MM.MMMM\'</item>
+        <item>GG° MM\' SS.SS\"</item>
+    </string-array>
+    <string-array name="pref_gps_degformat_values">
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+    </string-array>
+    
+    <string name="pref_gps_startenabled_title">GPS activado al inicio</string>
+    <string name="pref_gps_startenabled_on">GPS activado al inicio de la app (debe estarlo también en los Ajustes del Sistema -- mira aquí debajo)</string>
+    <string name="pref_gps_startenabled_off">GPS desactivado al inicio de la app</string>
+    
+    <string name="pref_gps_update_title">Tasas de actualización del GPS</string>
+    
+    <string name="pref_gps_update_time">Tiempo (segundos)</string>
+    <string name="pref_gps_update_time_text">Introduce el tiempo entre actualizaciones de GPS (en segundos).\nRecuerda que valores muy pequeños pueden causar un consumo de batería más rápido.\n\n<b>Recomendado = 5</b></string>
+    
+    <string name="pref_gps_update_distance">Distancia (metros)</string>
+    <string name="pref_gps_update_distance_text">Introduce la distancia entre actualizaciones de GPS (en metros).\nRecuerda que valores muy pequeños pueden causar un consumo de batería más rápido.\n\n<b>Recomendado = 5</b></string>
+    
+    <string name="pref_gps_enablegps_title">Activar GPS en Ajustes del Sistema</string>
+    <string name="pref_gps_enablegps_title_summary">Lanzar los Ajustes de Localización del Sistema para poder activar \'Satélites GPS\' bajo \'Fuentes de Localización\'</string>
+
+</resources>

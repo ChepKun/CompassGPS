@@ -8,11 +8,17 @@ import android.widget.*;
 import android.support.v4.app.NavUtils;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 
 public class AboutActivity extends Activity {
 	
+	private ImageView imgIcon;
+	private TextView lblAppName;
 	private TextView lblAttributions;
 
 	@Override
@@ -20,6 +26,8 @@ public class AboutActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_about);
 
+		imgIcon = (ImageView) findViewById(R.id.imgIcon);
+		lblAppName = (TextView) findViewById(R.id.lblAppName);
 		lblAttributions = (TextView) findViewById(R.id.lblAboutAttributions);
 	}
 	
@@ -27,9 +35,21 @@ public class AboutActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		
+		setAppIconNameVer();
 		setAttributions();
 	}
 	
+	private void setAppIconNameVer() {
+		try {
+			PackageManager pmanager = this.getPackageManager();
+			PackageInfo pinfo = pmanager.getPackageInfo(this.getPackageName(), 0);
+			
+			lblAppName.setText(getString(getApplicationInfo().labelRes) + " " + pinfo.versionName);
+		} catch (NameNotFoundException e) {
+			lblAppName.setText(getString(getApplicationInfo().labelRes));
+		}		
+	}
+
 	private void setAttributions() {
 		String attributions = new String("");
 		
@@ -77,4 +97,22 @@ public class AboutActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	@SuppressLint("NewApi")
+	@Override
+	public boolean onNavigateUp()
+	{
+		animateActivityOut();
+		return super.onNavigateUp();
+	}
+	
+	
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		animateActivityOut();
+	}
+	
+	private void animateActivityOut() {
+		overridePendingTransition(R.anim.fadeinltr, R.anim.fadeoutltr);
+	}
 }

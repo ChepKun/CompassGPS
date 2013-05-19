@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.content.res.ColorStateList;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.widget.ProgressBar;
+import android.graphics.Color;
 import android.hardware.GeomagneticField;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -31,7 +33,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import java.util.Date;
 
-public class MainActivity extends FragmentActivity
+public class CompassGPSActivity extends FragmentActivity
 	implements SensorEventListener, LocationListener, EnableGPSSettingsDialogFragment.EnableGPSSettingsDialogListener, OnSharedPreferenceChangeListener {
 	
 	private boolean wasGPSChecked = false;
@@ -50,6 +52,12 @@ public class MainActivity extends FragmentActivity
 	
 	private boolean isGPSEnabled = false;
 	private boolean showGPSSettingsDialog = true;	
+	
+	private TextView lblGPSStatus;
+	private static final int COLOR_GREY = Color.GRAY;
+	private static final int COLOR_RED = Color.parseColor("#FF4444");
+	private static final int COLOR_YELLOW = Color.parseColor("#FFBB33");
+	private static final int COLOR_GREEN = Color.parseColor("#99CC00");
 	
 	private ProgressBar pgbGPSSignal;
 	private ToggleButton tgbToggleGPS;
@@ -91,6 +99,7 @@ public class MainActivity extends FragmentActivity
 	    imgCompass.setVisibility(isHoneycombOrHigher ? View.VISIBLE : View.GONE);
 	    imgUp.setVisibility(isHoneycombOrHigher ? View.GONE : View.VISIBLE);
 	    
+	    lblGPSStatus = (TextView) findViewById(R.id.lblGPSStatus);
 	    pgbGPSSignal = (ProgressBar) findViewById(R.id.pgbLoading);
 	    tgbToggleGPS = (ToggleButton) findViewById(R.id.tgbGPSToggle);
 	    lblLatTitle = (TextView) findViewById(R.id.lblGPSLatLabel);
@@ -155,30 +164,35 @@ public class MainActivity extends FragmentActivity
 		snmSensorManager.registerListener(this, snsCompass, SensorManager.SENSOR_DELAY_NORMAL);
 
 		declination = getDeclination(lnmLocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER));
-	}
-	
-	@Override
-	protected void onResume() {
-		System.out.println("onResume");
-		super.onResume();
-	    
-	    isGPSEnabled = lnmLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-	    
-	    if(!isGPSEnabled && showGPSSettingsDialog)
+		
+		isGPSEnabled = lnmLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+		
+		if(!isGPSEnabled && showGPSSettingsDialog)
 	    	showGPSDialog();
-	    
-	    setUIDependingOnGPSProvider();
+		
+		setUIDependingOnGPSProvider();
 	    
 	    if(isGPSEnabled && tgbToggleGPS.isChecked())
 	    	registerListenerLocationManager(true);
 	}
 	
 	@Override
+	protected void onResume() {
+		System.out.println("onResume");
+		super.onResume();
+		
+		readPreferences();
+	    
+	    isGPSEnabled = lnmLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+	    
+//	    if(isGPSEnabled && tgbToggleGPS.isChecked())
+//	    	updateLatLon();
+	}
+	
+	@Override
 	protected void onPause() {
 		System.out.println("onPause");
 		super.onPause();
-	    
-	    registerListenerLocationManager(false);
 	}
 	
 	@Override
@@ -187,6 +201,9 @@ public class MainActivity extends FragmentActivity
 		super.onStop();
 	    
 	    snmSensorManager.unregisterListener(this);
+	    registerListenerLocationManager(false);
+	    lat = 0.0;
+	    lon = 0.0;
 	}
 
 	@Override
@@ -196,18 +213,18 @@ public class MainActivity extends FragmentActivity
 		
 		savedInstanceState.putBoolean(KEY_WASGPSCHECKED, tgbToggleGPS.isChecked());
 		
-		System.out.println("Guardando instance state: " + KEY_WASGPSCHECKED + " = " + String.valueOf(tgbToggleGPS.isChecked()));
+		
 	}
 	
 	@Override
 	public void onRestoreInstanceState(Bundle savedInstanceState) {
-		super.onRestoreInstanceState(savedInstanceState);
 		System.out.println("onRestoreInstanceState");
+		super.onRestoreInstanceState(savedInstanceState);
 
 		showGPSSettingsDialog = false;
 		wasGPSChecked = savedInstanceState.getBoolean(KEY_WASGPSCHECKED);
 		
-		System.out.println("Leyendo instance state: " + KEY_WASGPSCHECKED + " = " + String.valueOf(wasGPSChecked));
+		
 	}
 
 	@Override
@@ -237,17 +254,23 @@ public class MainActivity extends FragmentActivity
 		    	System.out.println("Lanzando Actividad About");
 		        intent = new Intent(this, AboutActivity.class);
 		        startActivity(intent);
+		        animateUponLeaving();
 		        return true;
 		    
 		    case R.id.mniSettings:
 		    	System.out.println("Lanzando Actividad Settings");
 		    	intent = new Intent(this, SettingsActivity.class);
 		        startActivity(intent);
+		        animateUponLeaving();
 		        return true;
 		        
 	        default:
 	        	return super.onOptionsItemSelected(item);
 	    }
+	}
+	
+	private void animateUponLeaving() {
+		overridePendingTransition(R.anim.fadeinrtl, R.anim.fadeoutrtl);
 	}
 	
 	/***
@@ -281,7 +304,7 @@ public class MainActivity extends FragmentActivity
 			wasGPSChecked = true;
 			
 			if(isGPSEnabled) {
-				pgbGPSSignal.setVisibility(View.VISIBLE);
+				setUIGPSTempDetails(true);
 				toggleGPSfields(true);
 				registerListenerLocationManager(true);
 			}
@@ -297,7 +320,7 @@ public class MainActivity extends FragmentActivity
 			toggleGPSfields(false);
 			registerListenerLocationManager(false);
 			wasGPSChecked = false;
-			pgbGPSSignal.setVisibility(View.GONE);
+			setUIGPSTempDetails(false);
 		}
 	}
 	
@@ -384,6 +407,7 @@ public class MainActivity extends FragmentActivity
 			isGPSEnabled=false;
 			tgbToggleGPS.setChecked(false);
 			toggleGPSfields(false);
+			setUIGPSTempDetails(false);
 		}
 	}
 
@@ -396,9 +420,18 @@ public class MainActivity extends FragmentActivity
 	}
 	
 	private void setUIDependingOnGPSProvider() {
-		tgbToggleGPS.setChecked(isGPSEnabled ? wasGPSChecked : false);
-		toggleGPSfields(tgbToggleGPS.isChecked());
-		pgbGPSSignal.setVisibility(tgbToggleGPS.isChecked() ? View.VISIBLE : View.GONE);
+		boolean isEnabled = isGPSEnabled ? wasGPSChecked : false;
+		tgbToggleGPS.setChecked(isEnabled);
+		toggleGPSfields(isEnabled);
+		pgbGPSSignal.setVisibility(isEnabled ? View.VISIBLE : View.INVISIBLE);
+		lblGPSStatus.setVisibility(isEnabled ? View.VISIBLE : View.INVISIBLE);
+		lblGPSStatus.setTextColor(COLOR_YELLOW);
+	}
+	
+	private void setUIGPSTempDetails(boolean areEnabled) {
+		pgbGPSSignal.setVisibility(areEnabled ? View.VISIBLE : View.INVISIBLE);
+		lblGPSStatus.setVisibility(areEnabled ? View.VISIBLE : View.INVISIBLE);
+		lblGPSStatus.setTextColor(COLOR_YELLOW);
 	}
 	
 	//The following method is required by the LocationListener interface;
@@ -408,13 +441,16 @@ public class MainActivity extends FragmentActivity
 			
 			if(status == LocationProvider.AVAILABLE) {
 				txtGPSStatus += ": " + getString(R.string.gpsstatus_ok);
-				pgbGPSSignal.setVisibility(View.GONE);
+				pgbGPSSignal.setVisibility(View.INVISIBLE);
+				lblGPSStatus.setTextColor(COLOR_GREEN);
 			} else if (status == LocationProvider.TEMPORARILY_UNAVAILABLE) {
 				txtGPSStatus += ": " + getString(R.string.gpsstatus_temp);
 				pgbGPSSignal.setVisibility(View.VISIBLE);
+				lblGPSStatus.setTextColor(COLOR_YELLOW);
 			} else if (status == LocationProvider.OUT_OF_SERVICE) {
 				txtGPSStatus += ": " + getString(R.string.gpsstatus_out);
 				pgbGPSSignal.setVisibility(View.VISIBLE);
+				lblGPSStatus.setTextColor(COLOR_RED);
 			}
 			
 			//toast(txtGPSStatus);
@@ -425,7 +461,7 @@ public class MainActivity extends FragmentActivity
 	//The following method is required by the LocationListener interface;
 	public void onLocationChanged (Location location) {
 		if(location.getProvider().equals(LocationManager.GPS_PROVIDER)) {
-			pgbGPSSignal.setVisibility(View.GONE);
+			pgbGPSSignal.setVisibility(View.INVISIBLE);
 			lat = location.getLatitude();
 			lon = location.getLongitude();
 			updateLatLon();
@@ -477,6 +513,8 @@ public class MainActivity extends FragmentActivity
 				lblLonContent.setText(lonvalues[0] + "°");
 				break;
 		}
+		
+		lblGPSStatus.setTextColor(COLOR_GREEN);
 	}
 	
 	/***
@@ -631,7 +669,7 @@ public class MainActivity extends FragmentActivity
 			shareIntent.setType("text/plain");
 			
 			try {
-				startActivity(Intent.createChooser(shareIntent, getString(R.string.viewusing)));
+				startActivity(Intent.createChooser(shareIntent, getString(R.string.sharelocation)));
 			} catch (android.content.ActivityNotFoundException ANFe) {
 				toast(ANFe.getLocalizedMessage());
 			}
@@ -704,7 +742,6 @@ public class MainActivity extends FragmentActivity
 		
 		try {
 			int updateDistance = Integer.valueOf(updateDistanceStr);
-			System.out.println("updateDistanceStr = " + updateDistanceStr);
 			if (updateDistance <= maxDistance && updateDistance >= minDistance)
 				GPS_REFRESH_DISTANCE = updateDistance;
 			else
@@ -713,7 +750,6 @@ public class MainActivity extends FragmentActivity
 			GPS_REFRESH_DISTANCE = defDistance;
 			throw new NumberFormatException("Could not parse stored value for GPS refresh distance in readPrefGPSUpdateDistance(String). Exception message is:\n" + NFe.getMessage());
 		} finally {
-			System.out.println("Entrando al finally");
 			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 			prefs.edit().putString(getString(R.string.pref_key_gpsupdatedistance), String.valueOf(GPS_REFRESH_DISTANCE)).commit();
 		}

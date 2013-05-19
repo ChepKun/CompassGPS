@@ -14,7 +14,7 @@
     <string name="GPS_settings">GPS Settings</string>
     <string name="viewinmap">View in Map</string>
     <string name="viewusing">View using…</string>
-    <string name="sharelocation">Share location</string>
+    <string name="sharelocation">Share location via…</string>
     <string name="share_imat">I\'m at</string>
     <string name="waitingacquire">Location not detected. Enable GPS and wait for a valid location…</string>
     <string name="gpsstatus">GPS Status</string>
@@ -23,7 +23,7 @@
     <string name="gpsstatus_out">Out of service</string>
     
     <string name="dialog_title">Enable GPS</string>
-    <string name="dialog_text">In order to retrieve location, we need you to enable \'GPS satellites\' under \'Location sources\' in your device\'s settings. You can do it easily by clicking below on \'Settings\'.</string>
+    <string name="dialog_text">In order to retrieve location, we need you to enable \'GPS satellites\' under \'Location sources\' in your device\'s settings.</string>
     <string name="dialog_dontshow">Do not show again</string>
     
     <string name="title_activity_about">About…</string>
@@ -31,6 +31,8 @@
     <string name="about_from">from</string>
     
     <string name="separator">Separator</string>
+    <string name="optYES">YES</string>
+    <string name="optNO">NO</string>
     <string name="skip">Skip</string>
     
     <string name="title_activity_settings">Settings</string>
