@@ -248,7 +248,7 @@ public class SettingsActivity extends PreferenceActivity {
 		
 		android.content.SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(preference.getContext());
 
-		//System.out.println("key = " + preference.getKey() + ", value = " + prefs.getString(preference.getKey(), "fallando"));
+		//Log.d("CompassGPS.Settings", "key = " + preference.getKey() + ", value = " + prefs.getString(preference.getKey(), "fallando"));
 		
 		// Trigger the listener immediately with the preference's
 		// current value.

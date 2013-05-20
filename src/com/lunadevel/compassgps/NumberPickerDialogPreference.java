@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.preference.DialogPreference;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class NumberPickerDialogPreference extends DialogPreference {
+	
+	private static final String LOGCAT = "CompassGPS.NumberPickerDialogPreference";
 	
 	private static final String NAMESPACE="http://schemas.android.com/apk/res/android";
 	
@@ -165,10 +168,10 @@ public class NumberPickerDialogPreference extends DialogPreference {
 //        CharSequence summary = getSummary();
 //        value=getPersistedInt(-1);
 //        if (summary == null) {
-//        	System.out.println("CPC1");
+//        	Log.d(LOGCAT, "CPC1");
 //            setSummary(Integer.toString(value));
 //        } else {
-//        	System.out.println("CPC2");
+//        	Log.d(LOGCAT, "CPC2");
 //            setSummary(String.format(summary.toString(), value));
 //        }
         setSummary(Integer.toString(value));

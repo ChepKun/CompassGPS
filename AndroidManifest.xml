@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lunadevel.compassgps"
     android:installLocation="auto"
-    android:versionCode="100042"
-    android:versionName="1.0.42" >
+    android:versionCode="100043"
+    android:versionName="1.0.43" >
 
     <uses-sdk
         android:minSdkVersion="8"

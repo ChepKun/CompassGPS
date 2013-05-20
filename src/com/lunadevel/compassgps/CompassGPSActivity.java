@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.res.ColorStateList;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +36,8 @@ import java.util.Date;
 
 public class CompassGPSActivity extends FragmentActivity
 	implements SensorEventListener, LocationListener, EnableGPSSettingsDialogFragment.EnableGPSSettingsDialogListener, OnSharedPreferenceChangeListener {
+	
+	private static final String LOGCAT = "CompassGPS";
 	
 	private boolean wasGPSChecked = false;
 	private static final String KEY_WASGPSCHECKED = "wasGPSChecked";
@@ -158,7 +161,7 @@ public class CompassGPSActivity extends FragmentActivity
 	
 	@Override
 	protected void onStart() {
-		System.out.println("onStart");
+		Log.d(LOGCAT, "onStart");
 		super.onStart();
 		
 		snmSensorManager.registerListener(this, snsCompass, SensorManager.SENSOR_DELAY_NORMAL);
@@ -178,7 +181,7 @@ public class CompassGPSActivity extends FragmentActivity
 	
 	@Override
 	protected void onResume() {
-		System.out.println("onResume");
+		Log.d(LOGCAT, "onResume");
 		super.onResume();
 		
 		readPreferences();
@@ -191,13 +194,13 @@ public class CompassGPSActivity extends FragmentActivity
 	
 	@Override
 	protected void onPause() {
-		System.out.println("onPause");
+		Log.d(LOGCAT, "onPause");
 		super.onPause();
 	}
 	
 	@Override
 	protected void onStop() {
-		System.out.println("onStop");
+		Log.d(LOGCAT, "onStop");
 		super.onStop();
 	    
 	    snmSensorManager.unregisterListener(this);
@@ -208,7 +211,7 @@ public class CompassGPSActivity extends FragmentActivity
 
 	@Override
 	public void onSaveInstanceState(Bundle savedInstanceState) {
-		System.out.println("onSaveInstanceState");
+		Log.d(LOGCAT, "onSaveInstanceState");
 		super.onSaveInstanceState(savedInstanceState);
 		
 		savedInstanceState.putBoolean(KEY_WASGPSCHECKED, tgbToggleGPS.isChecked());
@@ -218,7 +221,7 @@ public class CompassGPSActivity extends FragmentActivity
 	
 	@Override
 	public void onRestoreInstanceState(Bundle savedInstanceState) {
-		System.out.println("onRestoreInstanceState");
+		Log.d(LOGCAT, "onRestoreInstanceState");
 		super.onRestoreInstanceState(savedInstanceState);
 
 		showGPSSettingsDialog = false;
@@ -251,14 +254,14 @@ public class CompassGPSActivity extends FragmentActivity
 	    		return true;
 	    
 	    	case R.id.mniAbout:
-		    	System.out.println("Lanzando Actividad About");
+	    		Log.d(LOGCAT, "Lanzando Actividad About");
 		        intent = new Intent(this, AboutActivity.class);
 		        startActivity(intent);
 		        animateUponLeaving();
 		        return true;
 		    
 		    case R.id.mniSettings:
-		    	System.out.println("Lanzando Actividad Settings");
+		    	Log.d(LOGCAT, "Lanzando Actividad Settings");
 		    	intent = new Intent(this, SettingsActivity.class);
 		        startActivity(intent);
 		        animateUponLeaving();
@@ -454,7 +457,7 @@ public class CompassGPSActivity extends FragmentActivity
 			}
 			
 			//toast(txtGPSStatus);
-			System.out.println(txtGPSStatus);
+			Log.i(LOGCAT, txtGPSStatus);
 		}
 	}
 	
@@ -465,7 +468,7 @@ public class CompassGPSActivity extends FragmentActivity
 			lat = location.getLatitude();
 			lon = location.getLongitude();
 			updateLatLon();
-			System.out.println("Localización actualizada");
+			Log.d(LOGCAT, "Localización actualizada");
 			declination = getDeclination(location);
 		} else {
 			toast("onLocationChanged, provider=NETWORK_PROVIDER");
@@ -611,18 +614,18 @@ public class CompassGPSActivity extends FragmentActivity
 	
 	private void registerListenerLocationManager(boolean enable) {
 		if(enable){
-			System.out.println("Registrado proveedor de GPS");
+			Log.d(LOGCAT, "Registrado proveedor de GPS");
 			lnmLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, GPS_REFRESH_TIME * 1000, GPS_REFRESH_DISTANCE, this);
 		}
 		else {
-			System.out.println("Liberado proveedor de GPS");
+			Log.d(LOGCAT, "Liberado proveedor de GPS");
 			lnmLocationManager.removeUpdates(this);
 		}
 	}
 
 	// Launch System Location settings
 	private void launchGPSSettingsActivity() {
-		System.out.println("Lanzando actividad de Location Settings");
+		Log.d(LOGCAT, "Lanzando actividad de Location Settings");
 		Intent settingsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
 		startActivity(settingsIntent);
 	}
