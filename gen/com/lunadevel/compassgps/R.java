@@ -101,53 +101,53 @@ public final class R {
         public static final int GPS=0x7f080014;
         public static final int GPS_settings=0x7f08001a;
         public static final int GPSstatusbullet=0x7f080011;
-        public static final int about_designedby=0x7f080028;
-        public static final int about_from=0x7f080029;
+        public static final int about_designedby=0x7f080029;
+        public static final int about_from=0x7f08002a;
         public static final int app_name=0x7f080012;
         public static final int compass=0x7f080013;
         public static final int degrees=0x7f080015;
-        public static final int dialog_dontshow=0x7f080026;
-        public static final int dialog_text=0x7f080025;
-        public static final int dialog_title=0x7f080024;
-        public static final int gpsstatus=0x7f080020;
-        public static final int gpsstatus_ok=0x7f080021;
-        public static final int gpsstatus_out=0x7f080023;
-        public static final int gpsstatus_temp=0x7f080022;
+        public static final int dialog_dontshow=0x7f080027;
+        public static final int dialog_text=0x7f080026;
+        public static final int dialog_title=0x7f080025;
+        public static final int gpsstatus=0x7f080021;
+        public static final int gpsstatus_ok=0x7f080022;
+        public static final int gpsstatus_out=0x7f080024;
+        public static final int gpsstatus_temp=0x7f080023;
         public static final int lat=0x7f080016;
         public static final int latitude=0x7f080018;
         public static final int lon=0x7f080017;
         public static final int longitude=0x7f080019;
-        public static final int optNO=0x7f08002c;
-        public static final int optYES=0x7f08002b;
-        public static final int pref_compass_showmagneticnorth_off=0x7f080036;
-        public static final int pref_compass_showmagneticnorth_on=0x7f080035;
-        public static final int pref_compass_showmagneticnorth_title=0x7f080034;
-        public static final int pref_general_restoredialogs=0x7f080030;
-        public static final int pref_general_restoredialogs_summary=0x7f080031;
-        public static final int pref_general_restoredialogs_text=0x7f080032;
-        public static final int pref_gps_degformat_title=0x7f080038;
-        public static final int pref_gps_enablegps_title=0x7f080041;
-        public static final int pref_gps_enablegps_title_summary=0x7f080042;
-        public static final int pref_gps_startenabled_off=0x7f08003b;
-        public static final int pref_gps_startenabled_on=0x7f08003a;
-        public static final int pref_gps_startenabled_title=0x7f080039;
-        public static final int pref_gps_update_distance=0x7f08003f;
-        public static final int pref_gps_update_distance_text=0x7f080040;
-        public static final int pref_gps_update_time=0x7f08003d;
-        public static final int pref_gps_update_time_text=0x7f08003e;
-        public static final int pref_gps_update_title=0x7f08003c;
+        public static final int optNO=0x7f08002d;
+        public static final int optYES=0x7f08002c;
+        public static final int pref_compass_showmagneticnorth_off=0x7f080037;
+        public static final int pref_compass_showmagneticnorth_on=0x7f080036;
+        public static final int pref_compass_showmagneticnorth_title=0x7f080035;
+        public static final int pref_general_restoredialogs=0x7f080031;
+        public static final int pref_general_restoredialogs_summary=0x7f080032;
+        public static final int pref_general_restoredialogs_text=0x7f080033;
+        public static final int pref_gps_degformat_title=0x7f080039;
+        public static final int pref_gps_enablegps_title=0x7f080042;
+        public static final int pref_gps_enablegps_title_summary=0x7f080043;
+        public static final int pref_gps_startenabled_off=0x7f08003c;
+        public static final int pref_gps_startenabled_on=0x7f08003b;
+        public static final int pref_gps_startenabled_title=0x7f08003a;
+        public static final int pref_gps_update_distance=0x7f080040;
+        public static final int pref_gps_update_distance_text=0x7f080041;
+        public static final int pref_gps_update_time=0x7f08003e;
+        public static final int pref_gps_update_time_text=0x7f08003f;
+        public static final int pref_gps_update_title=0x7f08003d;
         /**  Compass settings 
  Compass settings 
          */
-        public static final int pref_header_compass=0x7f080033;
+        public static final int pref_header_compass=0x7f080034;
         /**  General settings 
  General settings 
          */
-        public static final int pref_header_general=0x7f08002f;
+        public static final int pref_header_general=0x7f080030;
         /**  GPS settings 
  GPS settings 
          */
-        public static final int pref_header_gps=0x7f080037;
+        public static final int pref_header_gps=0x7f080038;
         public static final int pref_key_compassshowmagneticnorth=0x7f080002;
         public static final int pref_key_compassshowmagneticnorth_default=0x7f080003;
         public static final int pref_key_gpsdegreesformat=0x7f080004;
@@ -165,15 +165,16 @@ public final class R {
         public static final int pref_key_gpsupdatetime_min=0x7f08000b;
         public static final int pref_key_showenablegpssettings=0x7f080000;
         public static final int pref_key_showenablegpssettings_default=0x7f080001;
-        public static final int separator=0x7f08002a;
+        public static final int separator=0x7f08002b;
         public static final int share_imat=0x7f08001e;
         public static final int sharelocation=0x7f08001d;
-        public static final int skip=0x7f08002d;
-        public static final int title_activity_about=0x7f080027;
-        public static final int title_activity_settings=0x7f08002e;
+        public static final int skip=0x7f08002e;
+        public static final int title_activity_about=0x7f080028;
+        public static final int title_activity_settings=0x7f08002f;
         public static final int viewinmap=0x7f08001b;
+        public static final int viewlocation=0x7f08001f;
         public static final int viewusing=0x7f08001c;
-        public static final int waitingacquire=0x7f08001f;
+        public static final int waitingacquire=0x7f080020;
     }
     public static final class style {
         /** 

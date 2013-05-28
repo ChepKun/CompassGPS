@@ -20,6 +20,7 @@ public class AboutActivity extends Activity {
 	private ImageView imgIcon;
 	private TextView lblAppName;
 	private TextView lblAttributions;
+	private boolean isNavigatingUp = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -99,12 +100,17 @@ public class AboutActivity extends Activity {
 
 	@SuppressLint("NewApi")
 	@Override
-	public boolean onNavigateUp()
-	{
-		animateActivityOut();
+	public boolean onNavigateUp() {
+		isNavigatingUp = true;
 		return super.onNavigateUp();
 	}
 	
+	@Override
+	public void finish() {
+		super.finish();
+		if(isNavigatingUp)
+			animateActivityOut();
+	}
 	
 	@Override
 	public void onBackPressed() {

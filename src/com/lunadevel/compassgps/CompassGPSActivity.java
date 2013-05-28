@@ -654,7 +654,8 @@ public class CompassGPSActivity extends FragmentActivity
 	
 	private void viewGPSOnMapActivity() {
 		if(lat != 0.0 && lon != 0.0) {
-			String uri = String.format(java.util.Locale.ENGLISH, "geo:%f,%f", lat, lon);
+			String uri = String.format(java.util.Locale.ENGLISH, "geo:%f,%f?q=%f,%f(%s)", lat, lon, lat, lon, getString(R.string.viewlocation));
+			//String uri = String.format(java.util.Locale.ENGLISH, "loc:%f,%f (%s)", lat, lon, getString(R.string.viewlocation));
 			Intent viewIntent = new Intent(Intent.ACTION_VIEW, android.net.Uri.parse(uri));
 			try {
 				startActivity(Intent.createChooser(viewIntent, getString(R.string.viewusing)));
@@ -718,7 +719,10 @@ public class CompassGPSActivity extends FragmentActivity
 				break;
 		}
 		
-		return res;
+		//replace() removes all the minus (-) signs in the string.
+		//This is done because no minus signs are wanted; (S)outh and (W)est chars are already specified.
+		//It's like abs() but for Strings
+		return res.replace("-", "");
 	}
 	
 	private void readPrefCompassShowTrueNorth (boolean showMagneticNorth) {

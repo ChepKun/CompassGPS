@@ -16,6 +16,7 @@
     <string name="viewusing">Ver usando…</string>
     <string name="sharelocation">Compartir lugar vía…</string>
     <string name="share_imat">Estoy en</string>
+    <string name="viewlocation">Aquí estoy</string>
     <string name="waitingacquire">Localización no detecteda. Activa el GPS y espera por una localización válida…</string>
     <string name="gpsstatus">Estado del GPS</string>
     <string name="gpsstatus_ok">Disponible</string>
