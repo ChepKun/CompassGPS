@@ -12,6 +12,12 @@ import android.widget.CheckBox;
 
 public class EnableGPSSettingsDialogFragment extends DialogFragment {
 	
+	/***
+	 * Classes implementing this interface should implement these methods in order to receive Positive and Negative clicks:
+	 * <ul><li><code>onDialogPositiveClick(DialogFragment, boolean)</code></li>
+	 * <li><code>onDialogNegativeClick(DialogFragment, boolean)</code></li></ul>
+	 * being the <code>DialogFragment</code> the dialog itself and <code>boolean</code> the request to show it again or not.
+	 */
 	public interface EnableGPSSettingsDialogListener {
 		public void onDialogPositiveClick(DialogFragment dialog, boolean showNextTime);
 		public void onDialogNegativeClick(DialogFragment dialog, boolean showNextTime);

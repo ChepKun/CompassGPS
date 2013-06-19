@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.content.res.ColorStateList;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
